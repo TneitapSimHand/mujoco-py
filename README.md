@@ -3,13 +3,18 @@
 # mujoco-py [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://openai.github.io/mujoco-py/build/html/index.html) [![Build Status](https://travis-ci.org/openai/mujoco-py.svg?branch=master)](https://travis-ci.org/openai/mujoco-py)
 
 [MuJoCo](http://mujoco.org/) is a physics engine for detailed, efficient rigid body simulations with contacts.
-`mujoco-py` allows using MuJoCo from Python 3.
+![image](illus/mujoco.png)
+`mujoco-py` allows using MuJoCo from Python 3. This library has been updated to be compatible with MuJoCo version 2.0 released on 10/1/2018.
 
-This library has been updated to be compatible with MuJoCo version 2.0 released on 10/1/2018.
+It is used in many well-known laboratories current research, such as:
+- [gym](https://gym.openai.com/envs/#mujoco) RL platform created by OpenAI; 
+- [ppdm](https://github.com/google-research/pddm) a In-hand manipulations algrithom created by Google Brain; 
+- DeepMind's [dm_control](https://github.com/deepmind/dm_control/tree/master/dm_control/locomotion) and [rodent control](https://openreview.net/forum?id=SyxrxR4KPS);
+- [Mujoco Haptix](http://www.mujoco.org/book/haptix.html) , a glove-based system only runs on Windows, mujoco150 up to now. 
 
 
 ## Windows Adaption
-Follow the [issues#504](https://github.com/openai/mujoco-py/issues/504), this repo adapt the latest version of mujoco python wrapper to the windows environment correctly. 
+Following the [issues#504](https://github.com/openai/mujoco-py/issues/504), this repo adapt the latest version of mujoco python wrapper to the windows environment correctly. 
 The following demo is the gym env `env = gym.make('HandManipulatePenTouchSensorsDense-v0')`. 
 ![image](illus/hand.png)
 
