@@ -20,6 +20,7 @@ It has been used in many well-known research projects, such as:
 - Activate CMD and set env with `os`: 
 ```
 activate XXX
+cd mujoco-py
 pip install -e .
 python
 >>> import os
