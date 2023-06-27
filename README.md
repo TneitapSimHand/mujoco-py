@@ -12,8 +12,29 @@ It has been used in many well-known research projects, such as:
 - DeepMind's [dm_control](https://github.com/deepmind/dm_control/tree/master/dm_control/locomotion) and [rodent control](https://openreview.net/forum?id=SyxrxR4KPS);
 - [Mujoco Haptix](http://www.mujoco.org/book/haptix.html) , a glove-based system only runs on Windows, mujoco150 up to now. 
 
+## Windows Adaption 2023
 
-## Windows Adaption
+- download mjc200 from https://www.roboti.us/download.html
+- Everyone key: https://www.roboti.us/file/mjkey.txt
+- clone this repo
+- Activate CMD and set env with `os`: 
+```
+activate XXX
+pip install -e .
+python
+>>> import os
+>>> os.environ["MUJOCO_PY_MUJOCO_PATH"] = r"D:\zzm_codes\codes2023\mujoco200_win64" # abs dir
+>>> os.environ["MUJOCO_PY_MJKEY_PATH"] = os.environ["MUJOCO_PY_MUJOCO_PATH"] + "/mjkey.txt"
+>>> mjcpy_bin = os.environ["MUJOCO_PY_MUJOCO_PATH"]+"\\bin"
+>>> os.environ["PATH"] += ";" + mjcpy_bin
+>>> os.add_dll_directory(mjcpy_bin) # for mujoco_py in py38
+>>> import gym # 0.21.0
+>>> env=gym.make('HandManipulatePenTouchSensorsDense-v0')
+>>> exit()
+```
+
+
+## Windows Adaption 2020
 Following the [issues#504](https://github.com/openai/mujoco-py/issues/504), this repo adapt the latest version of mujoco python wrapper to the windows environment correctly. 
 The following demo is the gym env `env = gym.make('HandManipulatePenTouchSensorsDense-v0')`. 
 ![image](illus/hand.png)
