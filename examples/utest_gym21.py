@@ -24,11 +24,17 @@ print(*openai_mjc_envnames, sep="\t")
 if __name__ == "__main__":
     #FetchSlide-v1   FetchPickAndPlace-v1    FetchReach-v1   FetchPush-v1    FetchSlideDense-v1      FetchPickAndPlaceDense-v1    FetchReachDense-v1      FetchPushDense-v1
     
-    # HandReach-v0    HandManipulateBlockRotateZ-v0   HandManipulateBlockRotateZTouchSensors-v0        HandManipulateBlockRotateZTouchSensors-v1        HandManipulateBlockRotateParallel-v0     HandManipulateBlockRotateParallelTouchSensors-v0 HandManipulateBlockRotateParallelTouchSensors-v1 HandManipulateBlockRotateXYZ-v0  HandManipulateBlockRotateXYZTouchSensors-v0      HandManipulateBlockRotateXYZTouchSensors-v1      HandManipulateBlockFull-v0       HandManipulateBlock-v0  HandManipulateBlockTouchSensors-v0
+    # 【HandReach-v0】    HandManipulateBlockRotateZ-v0   HandManipulateBlockRotateZTouchSensors-v0       HandManipulateBlockRotateZTouchSensors-v1       HandManipulateBlockRotateParallel-v0    HandManipulateBlockRotateParallelTouchSensors-v0  HandManipulateBlockRotateParallelTouchSensors-v1        【HandManipulateBlockRotateXYZ-v0】 HandManipulateBlockRotateXYZTouchSensors-v0     HandManipulateBlockRotateXYZTouchSensors-v1       HandManipulateBlockFull-v0      HandManipulateBlock-v0  HandManipulateBlockTouchSensors-v0      HandManipulateBlockTouchSensors-v1      HandManipulateEggRotate-v0HandManipulateEggRotateTouchSensors-v0  HandManipulateEggRotateTouchSensors-v1  HandManipulateEggFull-v0        HandManipulateEgg-v0    HandManipulateEggTouchSensors-v0        HandManipulateEggTouchSensors-v1  HandManipulatePenRotate-v0      HandManipulatePenRotateTouchSensors-v0  HandManipulatePenRotateTouchSensors-v1  HandManipulatePenFull-v0        HandManipulatePen-v0    HandManipulatePenTouchSensors-v0  HandManipulatePenTouchSensors-v1        HandReachDense-v0       HandManipulateBlockRotateZDense-v0      HandManipulateBlockRotateZTouchSensorsDense-v0  HandManipulateBlockRotateZTouchSensorsDense-v1    HandManipulateBlockRotateParallelDense-v0       HandManipulateBlockRotateParallelTouchSensorsDense-v0   HandManipulateBlockRotateParallelTouchSensorsDense-v1   HandManipulateBlockRotateXYZDense-v0      HandManipulateBlockRotateXYZTouchSensorsDense-v0        HandManipulateBlockRotateXYZTouchSensorsDense-v1        HandManipulateBlockFullDense-v0 HandManipulateBlockDense-v0       HandManipulateBlockTouchSensorsDense-v0 HandManipulateBlockTouchSensorsDense-v1 HandManipulateEggRotateDense-v0 HandManipulateEggRotateTouchSensorsDense-v0     HandManipulateEggRotateTouchSensorsDense-v1       HandManipulateEggFullDense-v0   HandManipulateEggDense-v0       HandManipulateEggTouchSensorsDense-v0   HandManipulateEggTouchSensorsDense-v1   HandManipulatePenRotateDense-v0   HandManipulatePenRotateTouchSensorsDense-v0     HandManipulatePenRotateTouchSensorsDense-v1     HandManipulatePenFullDense-v0   HandManipulatePenDense-v0       HandManipulatePenTouchSensorsDense-v0     HandManipulatePenTouchSensorsDense-v1
     
-    env=gym.make("HandManipulateBlockRotateXYZ-v0")
+    env=gym.make("HandManipulateBlockRotateXYZTouchSensors-v1")
     # print("wrapper re-order observations: ", env.env.env.observation_space.keys())
-    print("gym wrapped obs dim: ", env.observation_space.shape)
+    if isinstance(env.observation_space, gym.spaces.dict.Dict):
+        print("gym wrapped obs dim: ", end="")
+        for key, val in env.observation_space.items():
+            print("%s: %d"%(key, val.shape[0]), end = "|\t")
+    else:
+        print(env.observation_space.shape)
+
     print("gym wrapped act dim: ", env.action_space.shape)
     test_episode = 20
     for epi_i in range(test_episode):
